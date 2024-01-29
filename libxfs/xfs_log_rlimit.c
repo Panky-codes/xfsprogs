@@ -156,6 +156,7 @@ xfs_log_calc_minimum_size(
 	xfs_log_get_max_trans_res(mp, &tres);
 
 	max_logres = xfs_log_calc_unit_res(mp, tres.tr_logres);
+	fprintf(stdout, "max_logres%d tr_logres %d mp->m_sb.sb_logsunit %d\n", max_logres, tres.tr_logres,mp->m_sb.sb_logsunit );
 	if (tres.tr_logcount > 1)
 		max_logres *= tres.tr_logcount;
 
@@ -197,5 +198,6 @@ xfs_log_calc_minimum_size(
 		min_logblks = BTOBB(max_logres) + 2 * BBSIZE;
 	min_logblks *= XFS_MIN_LOG_FACTOR;
 
+	fprintf(stdout, "min_logblks %d max_logres%d\n", min_logblks, max_logres);
 	return XFS_BB_TO_FSB(mp, min_logblks);
 }

@@ -44,6 +44,7 @@ xfs_log_calc_unit_res(
 	int			iclog_header_size;
 	int			iclog_size;
 	uint			num_headers;
+	int old_unit_bytes = unit_bytes;
 
 	if (xfs_has_logv2(mp)) {
 		iclog_size = XLOG_MAX_RECORD_BSIZE;
@@ -133,6 +134,8 @@ xfs_log_calc_unit_res(
 		/* BB roundoff */
 		unit_bytes += 2 * BBSIZE;
 	}
+
+	fprintf(stdout, "diff in unit_bytes %d", unit_bytes - old_unit_bytes);
 
 	return unit_bytes;
 }

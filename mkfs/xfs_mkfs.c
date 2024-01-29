@@ -3525,6 +3525,7 @@ calculate_log_size(
 
 	ASSERT(min_logblocks);
 	min_logblocks = max(XFS_MIN_LOG_BLOCKS, min_logblocks);
+	fprintf(stdout, "min_logblocks %d XFS_MIN_LOG_BLOCKS %lld\n", min_logblocks, XFS_MIN_LOG_BLOCKS);
 
 	/* if we have lots of blocks, check against XFS_MIN_LOG_BYTES, too */
 	if (!cli->logsize &&
